@@ -1,0 +1,557 @@
+/* 共用 */
+
+.berger-list {
+    display: none;
+    align-items: center;
+    color: var(--c-pri);
+}
+
+.berger-list .material-icons {
+    font-size: 40px;
+}
+
+.text-bg-deep {
+    color: var(--c-bg-deep)
+}
+
+.text-pri {
+    color: var(--c-pri);
+}
+
+.text-sec-deep {
+    color: var(--c-sec-deep);
+}
+
+.cover-fit {
+    object-fit: cover;
+}
+
+ul {
+    list-style: none;
+}
+
+@media screen and (max-width: 1064px) {
+    .main-menu {
+        display: none;
+    }
+    .berger-list {
+        display: flex;
+    }
+    .btn-outline {
+        /* 覆蓋 bootstrap d-flex important 屬性 */
+        display: none !important;
+    }
+    nav .col {
+        padding: 0;
+    }
+    .day-night-switch {
+        margin-right: 20px;
+    }
+    .material-icons.cart {
+        margin-right: 20px;
+    }
+    .footer {
+        margin: 0;
+    }
+    .footer-link.menu li {
+        display: none;
+    }
+}
+
+/* banner */
+
+.banner-carousel {
+    height: 875px;
+    background-color: var(--c-bg-mid);
+}
+
+.banner-title {
+    padding: 30px 4%;
+    font-weight: bold;
+    color: var(--c-sec-deep);
+}
+
+.carousel-wrapper {
+    margin: 0 auto;
+    height: 750px;
+    max-width: 1900px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .banner-title {
+        display: none;
+    }
+    .banner-carousel {
+        height: 530px;
+        margin-top: 80px;
+        padding: 20px 0;
+    }
+    .carousel-wrapper {
+        height: 490px;
+        max-width: 768px;
+        overflow: hidden;
+    }
+}
+
+.event-carousel {
+    display: flex;
+    height: 100%;
+    left: -1095.5px;
+    transition: 0.3s;
+}
+
+.carousel-parts {
+    width: 1350px;
+    height: 100%;
+    margin: 0 10px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.carousel-parts img {
+    border-radius: 20px;
+}
+
+.carousel-pages {
+    bottom: 20px;
+    margin: 0;
+    width: 100%;
+}
+
+.carousel-pages li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #eee;
+    margin: 0 10px;
+    opacity: 0.7;
+}
+
+.carousel-pages li:hover, .carousel-pages li.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 265px;
+    height: 100%;
+    font-size: 3rem;
+    opacity: 0.8;
+    cursor: pointer;
+    color: white;
+}
+
+.carousel-btn:hover {
+    color: white;
+    opacity: 1;
+}
+
+#btnNext {
+    right: 0
+}
+
+/* 主內容 */
+
+/* 商品標題 */
+
+.event-title {
+    margin: 20px 0;
+    color: var(--c-pri);
+}
+
+.event-name {
+    margin: 10px 0;
+}
+
+.event-name svg {
+    margin: 0 10px;
+}
+
+.event-name.favorite svg {
+    color: palevioletred;
+}
+
+.event-title i {
+    font-style: normal;
+}
+
+.event-subtitle {
+    margin: 10px 0;
+}
+
+.event-subtitle svg {
+    font-size: 1.25rem;
+}
+
+.event-subtitle span {
+    margin: 0 5px;
+}
+
+.event-subtitle i {
+    margin-right: 10px;
+}
+
+.event-title .ic-fav {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.event-title-text {
+    margin: 10px 5px;
+}
+
+.rwd-menu, .rwd-calendar {
+    display: none;
+}
+
+.rwd-menu, .rwd-calendar {
+    background-color: var(--c-bg-mid);
+}
+
+.rwd-menu ul li {
+    margin: 10px 15px;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.rwd-menu ul li a {
+    color: var(--c-pri);
+}
+
+.rwd-menu ul li:hover a {
+    color: var(--c-bg-deep);
+    border-bottom: var(--c-sec-light) solid 3px;
+}
+
+.rwd-calendar {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--c-pri);
+    padding: 10px 0;
+    margin: 20px 0;
+}
+
+.rwd-calendar div {
+    /* margin: 10px 0;
+    padding: 10px 0; */
+}
+
+.rwd-calendar input {
+    /* padding-left: 55px; */
+    width: 90%;
+    border-radius: 10px;
+}
+
+.rwd-calendar span {
+    left: 7.5%;
+}
+
+.datePicker {
+    margin-top: 50px;
+}
+
+.input-population {
+    width: 395px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+}
+
+.input-population:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 1064px) {
+    .rwd-menu {
+        display: flex;
+        justify-content: center;
+    }
+    .rwd-calendar {
+        display: block;
+    }
+}
+
+.calendar {
+    /* height: 600px; */
+    background-color: var(--c-bg-mid);
+    margin: 30px 0;
+    border-radius: 20px;
+}
+
+.calendar-wrapper .price, .calendar-wrapper .review {
+    padding: 0 13%;
+}
+
+.calendar-wrapper .input-population {
+    padding-left: 185px;
+    padding-right: 100px;
+}
+
+.calendar-wrapper .population {
+    left: 16%;
+}
+
+.calendar-wrapper .population-counter {
+    right: 16%;
+}
+
+.star-rate-bg {
+    background-color: var(--c-pri);
+    background: linear-gradient(to right, var(--c-pri) 50%, transparent 50%);
+    mask: url('http://localhost:8080/images/star_black.svg') repeat-x;
+}
+
+.star-rate-bg svg {
+    
+}
+
+@media screen and (max-width: 1064px) {
+    .calendar, .calendar-wrapper {
+        display: none;
+    }
+    .description-title {
+        text-align: center;
+        font-size: 1.75rem;
+    }
+}
+
+/* 商品資訊 */
+
+.event-description {
+    background-color: var(--c-bg-deep);
+    color: var(--c-bg-light);
+    padding: 30px 0;
+}
+
+.description-title {
+    margin: 20px 0;
+}
+
+.event-description-content {
+    font-size: 1.125rem;
+    margin: 30px 20px;
+}
+
+.event-description-content li {
+    margin: 5px 0;
+}
+
+.event-description-content.warning li {
+    margin: 10px 0;
+}
+
+.event-description-content .description-subtitle {
+    margin: 30px 0;
+}
+
+.cancel-warning {
+    color: var(--c-sec-mid);
+}
+
+.description-warning {
+    background-color: var(--c-pri-light);
+    border-radius: 20px;
+    color: var(--c-pri);
+}
+
+/* 旅客評價 */
+
+.consumer-review .description-title {
+    color: var(--c-pri);
+    padding: 30px 0;
+}
+
+.description-title.review-grade {
+    background-color: var(--c-bg-deep);
+    color: var(--c-bg-light);
+    padding: 15px 20px;
+    margin-left: 100px;
+    border-radius: 20px;
+}
+
+.review-quantity {
+    color: var(--c-bg-deep);
+    margin-left: 50px;
+}
+
+.review-avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.review-content {
+    margin: 15px 0;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.review-content div {
+    margin: 5px;
+}
+
+.review-title {
+    font-weight: bold;
+}
+
+.review-page {
+    border-radius: 10px;
+    font-size: 1.125rem;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .review-page-wrapper, .review-page {
+        display: none;
+    }
+    .review-card-wrapper {
+        overflow: scroll;
+    }
+    .rwd-height {
+        height: 250px;
+        display: flex;
+    }
+    .review-title-wrapper {
+        justify-content: center;
+    }
+}
+
+/* 更多推薦 */
+
+.suggestion {
+    padding: 40px 0 60px 0;
+    margin-top: 20px;
+}
+
+.suggestion-title {
+    margin: 10px 0;
+}
+
+.suggest-card-wrapper {
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .suggestion {
+        padding: 10px 0 60px 0;
+    }
+    .suggest-card-wrapper {
+        overflow: scroll;
+        flex-wrap: nowrap;
+    }
+    .suggestion-title {
+        margin: 20px 0;
+    }
+}
+
+/* 卡片模組 */
+
+.card-wrapper {
+    padding: 50px 0;
+    max-width: 1840px;
+}
+
+.event-card {
+    width: 432px;
+    height: 490px;
+    border-radius: 50px;
+    background-color: var(--c-bg-mid);
+    margin: 20px 10px;
+    padding: 31px;
+}
+
+.event-card:hover {
+    box-shadow: var(--shadow);
+}
+
+.card-img {
+    width: 370px;
+    height: 300px;
+    border-radius: 50px;
+}
+
+.card-img img {
+    border-radius: 20px;
+}
+
+.card-title {
+    font-weight: bold;
+    color: var(--c-pri);
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.card-tag::before {
+    content: "熱銷中";
+    color: white;
+    font-weight: lighter;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-sec-deep);
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 60%;
+    position: absolute;
+    left: -65px;
+    top: 9px;
+}
+
+.card-content {
+    font-size: 1.125rem;
+    margin-top: 5px;
+}
+
+.card-content i {
+    font-size: 1.5rem;
+}
+
+.review-times, .attend-times {
+    font-size: 0.75rem;
+}
+
+.event-price {
+    color: var(--c-pri);
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-wrapper {
+        padding: 0;
+        overflow: hidden;
+        /* max-width: 1840px; */
+    }
+    .event-card {
+        width: 350px;
+        height: 490px;
+        border-radius: 50px;
+        background-color: var(--c-bg-mid);
+        margin: 0 5px 20px 5px;
+        padding: 25px;
+    }
+    .card-img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50px;
+    }
+}

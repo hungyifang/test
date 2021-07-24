@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from './Footer';
 import NavBar from './NavBar';
+import { withRouter } from 'react-router-dom';
+
 const Layout = (props) => {
   return (
     <>
@@ -10,4 +12,4 @@ const Layout = (props) => {
     </>
   );
 };
-export default Layout;
+export default withRouter(Layout);

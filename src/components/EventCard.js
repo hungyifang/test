@@ -4,7 +4,6 @@ import { MdStar, MdLocationOn } from 'react-icons/md';
 import EventCardReview from './EventCardReview';
 import moment from 'moment';
 const axios = require('axios').default;
-
 function EventCard(props) {
   const [events, setEvents] = useState([]);
   const [hotTags, setHotTags] = useState([]);
@@ -117,7 +116,7 @@ function EventCard(props) {
         return 'position-relative';
       }
     }
-    const linkTo = '/event/' + card.i_id + '#';
+    const linkTo = '/event-detail/' + card.i_id;
     return (
       <Link
         to={{

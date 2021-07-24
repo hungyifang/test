@@ -1,0 +1,264 @@
+/* 共用 */
+
+.berger-list {
+    display: none;
+    align-items: center;
+    color: var(--c-pri);
+}
+
+.berger-list .material-icons {
+    font-size: 40px;
+}
+
+@media screen and (max-width: 1064px) {
+    .main-menu {
+        display: none;
+    }
+    .berger-list {
+        display: flex;
+    }
+    .btn-outline {
+        /* 覆蓋 bootstrap d-flex important 屬性 */
+        display: none !important;
+    }
+    nav .col {
+        padding: 0;
+    }
+    .day-night-switch {
+        margin-right: 20px;
+    }
+    .material-icons.cart {
+        margin-right: 20px;
+    }
+    .banner {
+        margin-top: 80px;
+    }
+    .footer {
+        margin: 0;
+    }
+    .footer-link.menu li {
+        display: none;
+    }
+}
+
+/* 快速選單 */
+
+.quick-list-wrapper {
+    height: 265px;
+}
+
+.quick-list {
+    height: 90px;
+    background-color: var(--c-pri-light);
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.quick-list-option {
+    height: 70px;
+    border-radius: 20px;
+    color: var(--c-pri);
+    margin: 0 15px;
+    transition: 0.2s;
+}
+
+.quick-list-option svg {
+    align-self: center;
+}
+
+.quick-list-option:hover {
+    background-color: white;
+    color: var(--c-pri);
+}
+
+@media screen and (max-width: 1064px) {
+    .quick-list-wrapper {
+        height: 0;
+    }
+    .quick-list {
+        border-radius: 0;
+    }
+}
+
+/* 主內容 */
+
+.section {
+    margin: 0 auto;
+}
+
+.section-title {
+    color: var(--c-bg-light);
+    padding-left: 3.5%;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.section-subtitle {
+    color: var(--c-bg-mid);
+    padding-left: 3.5%;
+}
+
+@media screen and (max-width: 768px) {
+    .section-title, .section-subtitle {
+        text-align: center;
+    }
+    .section-title {
+        padding-right: 150px;
+        padding: 20px;
+    }
+    .section-subtitle {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+    }
+}
+
+/* 卡片 */
+
+.card-wrapper {
+    padding: 50px 0;
+    /* max-width: 1840px; */
+}
+
+.event-card {
+    width: 432px;
+    height: 490px;
+    border-radius: 50px;
+    background-color: var(--c-bg-mid);
+    margin: 0 14px 50px 14px;
+    padding: 31px;
+}
+
+.event-card:hover {
+    box-shadow: var(--shadow);
+}
+
+.card-img {
+    width: 370px;
+    height: 300px;
+    border-radius: 50px;
+}
+
+.card-img img {
+    border-radius: 20px;
+}
+
+.card-title {
+    font-weight: bold;
+    color: var(--c-pri);
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.card-tag-hot::before {
+    content: "熱銷中";
+    color: white;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    background-color: var(--c-sec-deep);
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 60%;
+    position: absolute;
+    left: -65px;
+    top: 5px;
+}
+
+.card-tag-new::after {
+    content: "新活動";
+    color: white;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    background-color: var(--c-sec-light);
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 60%;
+    position: absolute;
+    left: -65px;
+    top: 5px;
+}
+
+.card-tag-new.card-tag-hot::before {
+    content: "熱銷中";
+    color: white;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    background-color: var(--c-sec-deep);
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 60%;
+    position: absolute;
+    left: -65px;
+    top: 5px;
+}
+
+.card-tag-hot.card-tag-new::after {
+    content: "新活動";
+    color: white;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    background-color: var(--c-sec-light);
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 60%;
+    position: absolute;
+    left: -65px;
+    top: 30px;
+}
+
+.card-content {
+    font-size: 1.125rem;
+    margin-top: 5px;
+}
+
+.card-content svg {
+    font-size: 1.375rem;
+}
+
+.card-content span {
+    margin: 0 2.5px;
+}
+
+.card-content .review-times, .card-content .attend-times {
+    font-size: 0.75rem;
+    align-self: flex-end;
+    margin: 0 5px;
+}
+
+.event-price {
+    color: var(--c-pri);
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-wrapper {
+        padding: 0;
+        /* max-width: 1840px; */
+    }
+    .event-card {
+        width: 350px;
+        height: 490px;
+        border-radius: 50px;
+        background-color: var(--c-bg-mid);
+        margin: 0 10px 20px 10px;
+        padding: 25px;
+    }
+    .card-img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50px;
+    }
+}

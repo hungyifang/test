@@ -1,0 +1,287 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined);
+@import url(./fontello.css);
+:root {
+    /* 背景顏色 */
+    --c-bg-light: #fefbe6;
+    --c-bg-mid: #ffefc4;
+    --c-bg-deep: #849b68;
+    /* 輔助顏色 */
+    --c-sec-light: #f9ca54;
+    --c-sec-mid: #fab751;
+    --c-sec-deep: #fca34f;
+    --c-pri-light: #cede98;
+    --c-pri: #637f60;
+    /* 陰影 */
+    --shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    /* 圓角半徑 */
+    --r-xs: 2px;
+    --r-s: 4px;
+    --r-m: 8px;
+    --r-l: 12px;
+    --r-xl: 24px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    background: var(--c-bg-light);
+}
+
+/* 小圖示對齊 */
+
+.material-icons, .material-icons-outlined {
+    display: inline-flex;
+    vertical-align: top;
+}
+
+/* 大按鈕 */
+
+.btn-action {
+    width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 30px;
+    background: var(--c-pri);
+}
+
+/* 小按鈕 */
+
+.btn-outline {
+    width: 150px;
+    height: 50px;
+    border: 3px solid var(--c-pri);
+    border-radius: 25px;
+    background: none;
+}
+
+.btn-outline a {
+    color: var(--c-pri);
+}
+
+.btn-action, .btn-outline {
+    font-size: 1.125rem;
+}
+
+/* ! 背景色 */
+
+.custom-bg-light {
+    background-color: var(--c-bg-light);
+}
+
+.bg-mid {
+    background-color: var(--c-bg-mid);
+}
+
+.bg-deep {
+    background-color: var(--c-bg-deep);
+}
+
+.sec-light {
+    background-color: var(--c-sec-light);
+}
+
+.sec-mid {
+    background-color: var(--c-sec-mid);
+}
+
+.sec-deep {
+    background-color: var(--c-sec-deep);
+}
+
+.pri-light {
+    background-color: var(--c-pri-light);
+}
+
+.bg-pri {
+    background-color: var(--c-pri);
+}
+
+/*! 導覽列 */
+
+.nav {
+    height: 80px;
+    /* padding: 0px 50px; */
+}
+
+.logo {
+    /* margin-right: 150px; */
+    min-width: 200px;
+}
+
+.logo img {
+    object-fit: cover;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.main-menu {
+    font-size: 1.125rem;
+    white-space: nowrap;
+}
+
+.main-menu li {
+    white-space: nowrap;
+}
+
+.main-menu-a {
+    color: var(--c-pri);
+    padding-bottom: 5px;
+}
+
+.main-menu-a.active {
+    border-bottom: var(--c-sec-deep) 3px solid;
+}
+
+.main-menu-a:hover {
+    color: var(--c-bg-deep);
+    border-bottom: var(--c-sec-light) 3px solid;
+}
+
+.day-night-switch {
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    /* margin-right: 60px; */
+}
+
+.switch-ball {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 0 2.5px;
+    transition: 0.5s;
+    margin-left: 61.5px;
+}
+
+.text-white {
+    left: 25px;
+    transition: 0.3s;
+}
+
+.switch-ball.switch {
+    margin-left: 2.5px;
+}
+
+.text-white.switch {
+    left: 50px;
+}
+
+.material-icons.cart {
+    font-size: 40px;
+    /* margin-right: 60px; */
+    color: var(--c-pri);
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    display: none;
+}
+
+/* footer共用 */
+
+.footer {
+    margin-top: 290px;
+    height: 800px;
+    background-image: url("./banner+footer/footer早上.svg");
+    background-size: cover;
+}
+
+.footer-link {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    color: var(--c-pri);
+}
+
+.footer-link i {
+    font-size: 4rem;
+    margin: 50px;
+}
+
+.footer-link i:hover {
+    color: var(--c-bg-deep);
+}
+
+.footer-link a {
+    color: var(--c-pri);
+    font-weight: bold;
+}
+
+.footer-link a:hover span {
+    color: var(--c-bg-deep);
+}
+
+.footer-link-margin {
+    margin: 0 50px;
+}
+
+/* 字級 */
+
+.h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.h2 {
+    font-size: 1.5rem;
+}
+
+.h3 {
+    font-size: 1.25rem;
+}
+
+/* input */
+
+.h4 {
+    font-size: 1.125rem;
+}
+
+.h5 {
+    font-size: 1rem;
+}
+
+/*! 規格修改 */
+
+/* 6/9 */
+
+/* body 
+    background: var(--c-bg-light) --> var(--c-bg-light); */
+
+/* .nav  */
+
+/* padding: 0px 50px;(new) */
+
+/* .btn-action,.btn-outline  */
+
+/* font-size: 1.125rem --> 1.5rem; */
+
+/* font-weight: bold;(new) */
+
+/* .day-night-switch */
+
+/* font-size: 0.75rem --> 1rem; */
+
+/* icon改用匯入material icon */
+
+/* 6/12 */
+
+/* 覺得陰影效果不明顯(在main.css裡設定的--shadow)(使用於卡片hover) */
+
+/* 卡片星星數字-->18px */
+
+/* icon size要大一點才跟文字較符合 卡片星星-->24px footer社群網站-->64px */
+
+/* icon改用匯入material icon */

@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/event-detail.css';
+import { ReactComponent as HollowStar } from '../star_border.svg';
 import { HashLink } from 'react-router-hash-link';
-import { MdLocationOn, MdRestore } from 'react-icons/md';
-import { AiOutlineClockCircle } from 'react-icons/ai';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import { HiOutlineMinus, HiOutlinePlus } from 'react-icons/hi';
 import $ from 'jquery';
 import parse from 'html-react-parser';
 import { withRouter } from 'react-router-dom';
 import EventCarousel from './EventCarousel';
+import EventDetailTitle from './EventDetailTitle';
 import BnBDateRangePicker from './BnBDateRangePicker';
 const axios = require('axios').default;
 
 function EventDetail(props) {
-  const favorite = false;
-  // const hashchange = window.location.hash;
-  const [auth, setAuth] = useState(props.auth);
+  const login = props.auth || false;
+  const [auth, setAuth] = useState(login);
   const [events, setEvents] = useState([]);
-  const [fav, setFav] = useState(favorite);
-  // const [hash, setHash] = useState(hashchange);
+  const [star, setStar] = useState(0);
+  const [fav, setFav] = useState(false);
+  const [population, setPopulation] = useState(1);
   const i_id = +props.match.params.i_id;
+  const u_id = props.u_id;
 
-  // const recievedState = props.location.state;
-  // console.log(recievedState);
+  async function checkFav() {
+    //有登入的話確認狀態
+    if (!auth) return setFav(false);
+
+    let result = await axios.get('http://localhost:8080/api/event/checkFav', {
+      params: {
+        i_id: i_id,
+        u_id: u_id,
+      },
+    });
+    parseInt(result) === 1 ? setFav(true) : setFav(false);
+  }
 
   async function loadEvent() {
     let result = await axios.get('http://localhost:8080/api/event/detail', {
@@ -32,44 +44,57 @@ function EventDetail(props) {
     result = result.data[0];
     setEvents(result);
   }
-  //需要會員ID
-  async function clickFav() {
-    if (!auth) {
-      return alert('請先登入');
-    }
-    let switchFav = !fav;
-    let u_id = props.u_id;
-    setFav(switchFav);
-    let result = await axios.get('http://localhost:8080/api/event/fav', {
+
+  async function loadReview() {
+    let result = await axios.get('http://localhost:8080/api/event/review', {
       params: {
-        u_id: u_id,
         i_id: i_id,
-        fav: fav,
       },
     });
-  }
-  function switchLevel(value) {
-    switch (value) {
-      case 1:
-        return '海邊區';
-      case 2:
-        return '草原區';
-      case 3:
-        return '深山區';
-      default:
-        return '不分區';
+
+    result = result.data[0];
+    //算星星
+    const stars = result
+      .map((review, index) => {
+        return review.score;
+      })
+      .reduce((accu, cur) => {
+        return accu + cur;
+      }, 0);
+    let starAVG = stars / result.length || 0;
+    if (Number.isInteger(starAVG) && starAVG !== 0) {
+      starAVG = starAVG + '.0';
     }
+    console.log(starAVG);
+    setStar(starAVG);
   }
+  //需要會員ID
+  // async function clickFav() {
+  //   if (!auth) {
+  //     return alert('請先登入');
+  //   }
+  //   let switchFav = !fav;
+  //   let u_id = props.u_id;
+  //   setFav(switchFav);
+  //   let result = await axios.get('http://localhost:8080/api/event/fav', {
+  //     params: {
+  //       u_id: u_id,
+  //       i_id: i_id,
+  //       fav: fav,
+  //     },
+  //   });
+  // }
   // function hashChange() {
-  //   let result = window.location.hash;
-  //   setHash(result);
-  //   console.log(result);
-  //   window.scrollTo(result);
+  //   let location = window.location.hash;
+  //   setHash(location);
+  //   console.log(location);
+  //   window.scrollTo(location);
   //   window.scrollBy(0, -500);
   // }
   useEffect(() => {
     loadEvent();
-    // hashChange(props);
+    loadReview();
+    checkFav();
     // jquery程式碼寫在這裡
     //RWD選單
     $(window).on('load resize', function () {
@@ -103,9 +128,10 @@ function EventDetail(props) {
     //   $('#review-card-wrapper').removeClass('rwd-height');
     // });
   }, []);
-  // useEffect(() => {
-  //   console.log(RWD);
-  // }, [RWD]);
+
+  useEffect(() => {
+    console.log(star);
+  }, [star]);
 
   const display = events.map((result, index) => {
     //轉換字串成HTML
@@ -120,37 +146,15 @@ function EventDetail(props) {
         </header>
 
         <main>
-          <div className="container">
-            <section className="event-title">
-              <div className="col d-flex align-items-center">
-                <div
-                  className={
-                    fav === true
-                      ? 'd-flex align-items-end h1 event-name favorite'
-                      : 'd-flex align-items-end h1 event-name'
-                  }
-                >
-                  {result.title}
-                  {fav === true ? (
-                    <FaHeart title="取消我的最愛" onClick={() => clickFav} />
-                  ) : (
-                    <FaRegHeart title="加入我的最愛" onClick={() => clickFav} />
-                  )}
-                </div>
-              </div>
-              <div className="col d-flex event-subtitle align-items-center h4">
-                <MdLocationOn />
-                <span>{switchLevel(result.level)}</span>
-                <AiOutlineClockCircle />
-                <span>行程時間&nbsp;3&nbsp;小時</span>
-                <MdRestore />
-                <span>7&nbsp;天前免費取消</span>
-              </div>
-              <div className="col d-flex event-title-text h4">
-                <span>{result.subtitle}</span>
-              </div>
-            </section>
-          </div>
+          <EventDetailTitle
+            auth={auth}
+            i_id={i_id}
+            u_id={u_id}
+            fav={fav}
+            level={result.level}
+            title={result.title}
+            subtitle={result.subtitle}
+          />
           {/* //RWD */}
           <div className="container-fluid p-0">
             <div className="rwd-menu col">
@@ -202,10 +206,59 @@ function EventDetail(props) {
                   {/* 從資料庫拿HTML文章*/}
                 </div>
                 {/* //RWD電腦板日期 END*/}
-                <div className="col-6 d-flex justify-content-center calendar-wrapper">
-                  <div className="calendar">
-                    <BnBDateRangePicker RWD={false} />
-                    <div className="col text-end px-5">TWD ${result.price}</div>
+                <div className="col-5 ms-auto calendar-wrapper">
+                  <div className="calendar w-100 mx-auto py-1">
+                    <div className="datePicker">
+                      <BnBDateRangePicker RWD={false} />
+                    </div>
+                    <div className="col d-flex justify-content-center align-items-center my-3 text-pri position-relative">
+                      <span className="h3 position-absolute d-flex align-items-center population">
+                        人數
+                      </span>
+                      <span className="h1 position-absolute population-counter d-flex align-items-center">
+                        <HiOutlinePlus
+                          onClick={() => {
+                            let newPopulation = parseInt(population + 1);
+                            setPopulation(newPopulation);
+                          }}
+                        />
+                        <HiOutlineMinus
+                          onClick={() => {
+                            let newPopulation = parseInt(population - 1);
+                            if (newPopulation < 1) newPopulation = 1;
+                            setPopulation(newPopulation);
+                          }}
+                        />
+                      </span>
+                      <input
+                        type="number"
+                        name="population"
+                        className="input-population text-pri h3"
+                        value={population}
+                      ></input>
+                    </div>
+                    <div className="h1 col text-pri price m-0 my-3">
+                      TWD $ {result.price * population}
+                    </div>
+                    <div className="col review d-flex align-items-center">
+                      <span className="h2 m-0 text-pri me-2">
+                        {star === 0 ? <FaRegQuestionCircle /> : star}
+                      </span>
+                      <div
+                        className="star-rate-bg h5 text-pri d-block m-0"
+                        style={{
+                          background: `linear-gradient(to right, var(--c-pri) ${
+                            star * 20
+                          }%, transparent ${star * 20}%)`,
+                        }}
+                      >
+                        <HollowStar />
+                        <HollowStar />
+                        <HollowStar />
+                        <HollowStar />
+                        <HollowStar />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {/* //RWD電腦板日期 END*/}

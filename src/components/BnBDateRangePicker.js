@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-dates/initialize';
 import moment from 'moment';
 import {
@@ -8,7 +8,7 @@ import {
   DayPickerRangeController,
 } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
-import 'react-dates/lib/css/custom_datepicker.css';
+import '../styles/custom_datepicker.css';
 
 function BnBDateRangePicker(props) {
   const [focused, setFocused] = useState(false);
@@ -16,9 +16,14 @@ function BnBDateRangePicker(props) {
 
   const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
-  const [focusedInput, setFocusedInput] = useState('');
+  const [focusedInput, setFocusedInput] = useState('startDate');
   const RWD = props.RWD;
-
+  useEffect(() => {
+    console.log(startDate);
+  }, [startDate]);
+  useEffect(() => {
+    console.log(date);
+  }, [date]);
   const rwddisplay = (
     <SingleDatePicker
       date={date} // momentPropTypes.momentObj or null
@@ -37,14 +42,14 @@ function BnBDateRangePicker(props) {
         setEndDate(endDate);
       }} // PropTypes.func.isRequired,
       focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-      onFocusChange={({ focusedInput }) => {
+      onFocusChange={(focusedInput) => {
         setFocusedInput(focusedInput);
       }} // PropTypes.func.isRequired,
-      initialVisibleMonth={() => moment().add(2, 'M')} // PropTypes.func or null,
+      initialVisibleMonth={() => moment()} // PropTypes.func or null,
       numberOfMonths={1}
-      onDayClick={() => {
-        console.log(startDate);
-      }}
+      endDateOffset={(day) => day}
+      daySize={50}
+      hideKeyboardShortcutsPanel={true}
     />
   );
 
