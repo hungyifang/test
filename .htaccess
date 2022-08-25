@@ -1,0 +1,18 @@
+# BEGIN WordPress
+# 在含有 BEGIN WordPress 及 END WordPress 標記的這兩行間的指示詞內容為動態產生，
+# 且應僅有 WordPress 篩選器能進行修改。對這兩行間任何指示詞內容的變更，
+# 都會遭到系統覆寫。
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+php_value memory_limit 256M
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+php_value max_execution_time 300
+# END WordPress
